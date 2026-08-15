@@ -1,8 +1,8 @@
 ''' Day 6: Python Fundamentals
    Date : 14 -Aug -2026
-   Name: Gaurav Bharat Deore
-   Contact no : 9373446328
-   Email :bharatdeore7813@gmail.com
+   Name: Bhuvanesh Himmat Deore
+   Contact no : 8080649149
+   Email :bhuvideore18@gmail.com
    Description : Topics that are covered on day 5
    Topics : 1)Iterators ,2) Generators ,3) Decorators ,4)  Content manager (self)
    7)special methods,
