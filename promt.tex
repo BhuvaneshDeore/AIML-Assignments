@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{hyperref}
+
+\definecolor{codebg}{RGB}{245,245,245}
+
+\lstset{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    aboveskip=6pt, belowskip=6pt
+}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{0.5em}{}
+
+\title{\textbf{My Prompt Engineering Examples: A Detailed Analysis}}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Today I practiced several prompting techniques by writing my own prompts and checking the responses I got. Below, I go through each example I tried, explain what technique it demonstrates, walk through what actually happened, point out any mistakes I made, and note what I learned from it.
+
+% =========================================================
+\section{Example 1: Zero-Shot Questions}
+
+\subsection{What I asked}
+\begin{quote}
+``hello -> bonjour, Goodbye →''\\
+
+\end{quote}
+
+\subsection{My analysis}
+
+
+% =========================================================
+\section{Example 2: JSON Schema Mistake and Correction}
+
+\subsection{What I wrote}
+\begin{lstlisting}
+{
+  "type": "object",
+  "properties": {
+    "name": { "type": "john" },
+    "age":  { "type": "25" }
+  }
+}
+\end{lstlisting}
+
+\subsection{My analysis}
+When I wrote this, I was trying to describe a JSON Schema for a person with a \texttt{name} and an \texttt{age}. Looking at it again, I can see my mistake clearly: I put actual values (\texttt{"john"}, \texttt{"25"}) into the \texttt{"type"} field, when \texttt{"type"} in a JSON Schema is supposed to describe a \textbf{data type} such as \texttt{"string"} or \texttt{"integer"} -- not a specific value.
+
+I was effectively conflating two different things:
+\begin{itemize}
+  \item A \textbf{schema}, which is a set of rules describing what shape and types the data must have.
+  \item An \textbf{instance}, which is actual data that either does or does not follow those rules.
+\end{itemize}
+
+The corrected schema looks like this:
+\begin{lstlisting}
+{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "age":  { "type": "integer" }
+  },
+  "required": ["name", "age"]
+}
+\end{lstlisting}
+
+And a valid instance that actually satisfies this schema is:
+\begin{lstlisting}
+{
+  "name": "John",
+  "age": 25
+}
+\end{lstlisting}
+
+What I take away from this is that whenever I ask a model to produce a JSON Schema, I need to be careful that \texttt{"type"} keys always contain type names, and that any real example data should be written as a separate JSON object, not mixed into the schema itself. This is probably the single most common beginner mistake with structured/JSON prompting, and now I can catch it if I see it again.
+
+% =========================================================
+\section{Example 3: Output Validation with a Missing Field}
+
+\subsection{What I asked}
+\begin{quote}
+``Ask JSON with a required field, then omit it intentionally.''
+\end{quote}
+
+\subsection{What was produced}
+Using the corrected schema from Example 2 (where \texttt{"required": ["name", "age"]}), I intentionally created this JSON instance:
+\begin{lstlisting}
+{
+  "name": "John"
+}
+\end{lstlisting}
+
+\subsection{My analysis}
+This instance is deliberately \textbf{invalid} because it leaves out \texttt{age}, which the schema marks as required. I did this on purpose to check that the rule actually gets enforced, rather than assuming it does.
+
+The reason I think this exercise matters is that it is very easy to write a validator (or trust a model's judgment) that always says ``looks fine'' without ever really checking anything. By constructing a case that \emph{should} fail, I can confirm the validation logic is doing real work -- if it had said this was valid, I would know something was broken. This is a general good habit I want to keep: whenever I set up a schema or a rule, I should test it with both a valid case and at least one deliberately broken case, so I know the check is meaningful and not just decorative.
+
+% =========================================================
+\section{Example 4: Function Calling with \texttt{get\_weather}}
+
+\subsection{What I asked for}
+\begin{quote}
+``Write a Python function \texttt{get\_weather(city)} and show how it would be called for Pune.''
+\end{quote}
+
+\subsection{What was produced}
+\begin{lstlisting}
+def get_weather(city):
+    return f"The weather in {city} is sunny and warm."
+
+# Calling the function for Pune
+weather = get_weather("Pune")
+print(weather)
+\end{lstlisting}
+Output:
+\begin{lstlisting}
+The weather in Pune is sunny and warm.
+\end{lstlisting}
+
+\subsection{My analysis}
+At first glance this looks like ``function calling,'' but when I look closely, the function is really just a \textbf{stub}: no matter what city I pass in, it always returns the same hard-coded sentence. It never actually looks up real weather data.
+
+This taught me an important distinction. In genuine function calling (as used with LLM tool-use APIs), the model does not run any code itself. Instead, it outputs a structured request describing which function to call and with what arguments, for example:
+\begin{lstlisting}
+{
+  "name": "get_weather",
+  "arguments": { "city": "Pune" }
+}
+\end{lstlisting}
+It is then the \emph{surrounding application} -- not the model -- that actually executes the real function, perhaps calling a live weather API, and returns the real result back to the model to use in its final answer.
+
+So while my example is a fine illustration of a function's \emph{shape} (one input argument, one return value), I now understand that it is only a placeholder demonstration, not true function calling. If I wanted a real integration, I would need to connect \texttt{get\_weather} to an actual weather API and let the model only decide \emph{when} and \emph{how} to call it.
+
+% =========================================================
+\section{Overall Takeaways}
+Going through these four examples helped me notice two recurring themes in my own mistakes and learning:
+\begin{enumerate}
+  \item \textbf{Schema vs. instance confusion.} I initially mixed up the rules describing data (schema) with the actual data itself (instance) -- this is worth double-checking every time I write a JSON Schema.
+  \item \textbf{The value of deliberately breaking things.} Both the missing-field JSON and the hard-coded weather function are ``fake'' or ``broken'' on purpose, and both taught me more than a perfectly correct example would have. Testing edge cases and stand-in stubs is a good habit before trusting any structured output or ``function call'' in a real system.
+\end{enumerate}
+
+\end{document}
