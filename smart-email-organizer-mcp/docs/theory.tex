@@ -1,0 +1,96 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{\textbf{Smart Email Organizer MCP Server}\\ \large Architectural Design, Security Theory, and Protocol Specification}
+\author{MCP Fundamentals Assignment}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document details the architectural design and theory behind the \textbf{Smart Email Organizer MCP Server}. Built on the Model Context Protocol (MCP) using FastMCP, the server interfaces securely with the Gmail REST API via Google OAuth 2.0. It exposes exactly three standard MCP primitives: one Tool (\texttt{manage\_emails}), one Resource (\texttt{emails://summary}), and one Prompt (\texttt{email\_cleanup}). The paper elaborates on the system's security posture, rule-based classification heuristics, and strict two-step confirmation safeguards for destructive operations.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Introduction \& Problem Statement}
+Modern electronic mail users suffer from severe cognitive overload due to high volume promotional broadcasts, newsletter subscriptions, and automated transactional messages. While Large Language Model (LLM) agents possess reasoning capability to filter and organize email, directly exposing raw mailbox access to an LLM introduces substantial security and safety risks.
+
+The \textbf{Smart Email Organizer MCP Server} bridges LLM reasoning with secure mailbox execution. By using the Model Context Protocol (MCP), it enables standard client-server interoperability while enforcing strict boundaries on capabilities.
+
+\section{Model Context Protocol (MCP) Architecture}
+The Model Context Protocol (MCP) defines three primary primitives:
+\begin{enumerate}
+    \item \textbf{Tools}: Executable functions exposed to the LLM agent to perform actions or state-changing side-effects.
+    \item \textbf{Resources}: Passive, read-only data endpoints providing context or metadata without state modification.
+    \item \textbf{Prompts}: Reusable instruction templates guiding LLM agent behavior and safety protocols.
+\end{enumerate}
+
+In accordance with strict assignment constraints, this server implements \textbf{exactly three primitives}:
+
+\subsection{Tool: \texttt{manage\_emails}}
+The primary operational primitive. It encapsulates email search, inbox analysis, category previews, archiving, and safe promotional email deletion.
+
+\subsection{Resource: \texttt{emails://summary}}
+A read-only endpoint calculating overall inbox metrics (unread count, important emails, category distribution).
+
+\subsection{Prompt: \texttt{email\_cleanup}}
+A structured system template mandating a 10-step safe cleanup protocol for AI clients.
+
+\section{Security \& Authentication Model}
+Security is paramount when handling personal communication channels.
+
+\subsection{OAuth 2.0 Credentials Separation}
+The application uses Google OAuth 2.0 Authorization Code flow for desktop applications:
+\begin{itemize}
+    \item No user passwords are ever requested or stored.
+    \item Client secrets (\texttt{credentials.json}) and access/refresh tokens (\texttt{token.json}) reside strictly on the user's local filesystem.
+    \item All credentials are excluded from source control via \texttt{.gitignore}.
+\end{itemize}
+
+\subsection{Least Privilege Principle}
+The server requests only the minimal required scope:
+\begin{equation}
+\text{Scope} = \texttt{https://www.googleapis.com/auth/gmail.modify}
+\end{equation}
+This scope permits metadata inspection, label modification (archiving), and soft-deletion (moving to Trash) without requesting full account administrative control.
+
+\section{Email Classification Mechanics}
+Classification uses multi-attribute metadata analysis (sender header, subject line, snippet, and Gmail system labels). The decision tree categorizes messages into eight distinct categories:
+\begin{enumerate}
+    \item \textbf{Important}: Triggered by Gmail \texttt{IMPORTANT} label or critical keywords (\textit{urgent, billing, invoice, security alert}).
+    \item \textbf{Job}: Identified by recruitment markers (\textit{interview, offer letter, recruiter, greenhouse.io, lever.co}).
+    \item \textbf{Internship}: Identified by early-career markers (\textit{internship, intern, co-op, summer analyst}).
+    \item \textbf{College}: Identified by \texttt{.edu} top-level domains or academic terminology (\textit{university, registrar, tuition}).
+    \item \textbf{Newsletter}: Identified by \textit{unsubscribe} headers, \textit{weekly digest}, or publishing platforms (\textit{Substack, Medium}).
+    \item \textbf{Promotion}: Identified by Gmail \texttt{CATEGORY\_PROMOTIONS} or commercial discount patterns (\textit{\% off, discount, sale ends}).
+    \item \textbf{Personal}: Direct person-to-person messages.
+    \item \textbf{Other}: General fallback.
+\end{enumerate}
+
+\section{Destructive Action Safeguards}
+Deleting emails is non-reversible from an automated standpoint. To prevent accidental data loss from ambiguous user prompts (e.g., \textit{"Clean my inbox"}), the server enforces a Two-Phase Confirmation pattern:
+
+\begin{equation}
+\text{Execution} = \begin{cases} 
+\text{Return Preview \& Warning}, & \text{if } \texttt{confirm} = \text{False} \\
+\text{Move to Trash}, & \text{if } \texttt{confirm} = \text{True}
+\end{cases}
+\end{equation}
+
+When \texttt{confirm=False}, the tool extracts promotional emails, generates a metadata preview (ID, sender, subject, date, snippet), calculates the target count, and returns a explicit safety requirement message. Deletion occurs only when the client re-invokes the tool with \texttt{confirm=True}.
+
+\section{Conclusion}
+The Smart Email Organizer MCP Server demonstrates how MCP primitives can be leveraged to build production-grade, secure, and beginner-friendly AI integrations with real-world APIs like Gmail.
+
+\end{document}

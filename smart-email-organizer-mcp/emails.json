@@ -1,0 +1,84 @@
+[
+  {
+    "id": "email001",
+    "sender": "hr@techcorp.com",
+    "subject": "Internship Opportunity - AI/ML Intern",
+    "body": "We are hiring AI/ML interns for our summer internship program.",
+    "date": "2026-10-05",
+    "read": false,
+    "important": true,
+    "category": "internship"
+  },
+  {
+    "id": "email002",
+    "sender": "placement@college.edu",
+    "subject": "Campus Placement Drive - Data Science",
+    "body": "A company is visiting our college for Data Science recruitment.",
+    "date": "2026-10-04",
+    "read": false,
+    "important": true,
+    "category": "college"
+  },
+  {
+    "id": "email003",
+    "sender": "linkedin@example.com",
+    "subject": "5 new jobs matching your profile",
+    "body": "Here are some Data Science and AI jobs matching your profile.",
+    "date": "2026-10-03",
+    "read": true,
+    "important": false,
+    "category": "job"
+  },
+  {
+    "id": "email004",
+    "sender": "newsletter@python.org",
+    "subject": "Python Weekly Newsletter",
+    "body": "Here are this week's Python news, tutorials and articles.",
+    "date": "2026-10-02",
+    "read": true,
+    "important": false,
+    "category": "newsletter"
+  },
+  {
+    "id": "email005",
+    "sender": "offers@shopping.com",
+    "subject": "50% OFF - Limited Time Offer!",
+    "body": "Get 50% discount on selected products. Shop now!",
+    "date": "2026-10-01",
+    "read": true,
+    "important": false,
+    "category": "promotion",
+    "deleted": true
+  },
+  {
+    "id": "email006",
+    "sender": "friend@example.com",
+    "subject": "Weekend Plan",
+    "body": "Are you free this weekend? Let's meet.",
+    "date": "2026-09-30",
+    "read": true,
+    "important": false,
+    "category": "personal"
+  },
+  {
+    "id": "email007",
+    "sender": "career@company.com",
+    "subject": "Data Scientist Job Opening",
+    "body": "We have an opening for a Junior Data Scientist.",
+    "date": "2026-09-29",
+    "read": false,
+    "important": true,
+    "category": "job"
+  },
+  {
+    "id": "email008",
+    "sender": "offers@shopping.com",
+    "subject": "Mega Sale - 70% OFF",
+    "body": "Don't miss our biggest promotional sale.",
+    "date": "2026-09-28",
+    "read": true,
+    "important": false,
+    "category": "promotion",
+    "deleted": true
+  }
+]
