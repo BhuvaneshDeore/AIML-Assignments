@@ -1,0 +1,134 @@
+[
+  {
+    "equipment_id": "RTU-1",
+    "building": "Building-A",
+    "type": "Rooftop Unit HVAC",
+    "status": "OPERATIONAL",
+    "risk": "LOW",
+    "energy_impact": "NORMAL",
+    "issue": "None",
+    "criticality": 3,
+    "runtime_hours": 3200
+  },
+  {
+    "equipment_id": "RTU-2",
+    "building": "Building-A",
+    "type": "Rooftop Unit HVAC",
+    "status": "DEGRADED",
+    "risk": "MEDIUM",
+    "energy_impact": "MODERATE_HIGH",
+    "issue": "Filter clogged, airflow restricted",
+    "criticality": 3,
+    "runtime_hours": 4800
+  },
+  {
+    "equipment_id": "RTU-3",
+    "building": "Building-A",
+    "type": "Rooftop Unit HVAC",
+    "status": "CRITICAL_FAULT",
+    "risk": "HIGH",
+    "energy_impact": "HIGH",
+    "issue": "Compressor short cycling & stuck cooling valve",
+    "criticality": 5,
+    "runtime_hours": 6200
+  },
+  {
+    "equipment_id": "Boiler-1",
+    "building": "Building-B",
+    "type": "Heating Boiler",
+    "status": "OPERATIONAL",
+    "risk": "LOW",
+    "energy_impact": "NORMAL",
+    "issue": "None",
+    "criticality": 4,
+    "runtime_hours": 2100
+  },
+  {
+    "equipment_id": "Boiler-2",
+    "building": "Building-B",
+    "type": "Heating Boiler",
+    "status": "WARNING",
+    "risk": "MEDIUM",
+    "energy_impact": "MODERATE",
+    "issue": "Flame sensor fouling causing delayed ignition",
+    "criticality": 4,
+    "runtime_hours": 5400
+  },
+  {
+    "equipment_id": "Cooling-Pump-1",
+    "building": "Building-C",
+    "type": "Water Circulation Pump",
+    "status": "OPERATIONAL",
+    "risk": "LOW",
+    "energy_impact": "NORMAL",
+    "issue": "None",
+    "criticality": 3,
+    "runtime_hours": 1800
+  },
+  {
+    "equipment_id": "Cooling-Pump-2",
+    "building": "Building-C",
+    "type": "Water Circulation Pump",
+    "status": "WARNING",
+    "risk": "HIGH",
+    "energy_impact": "HIGH",
+    "issue": "High bearing vibration & shaft misalignment",
+    "criticality": 4,
+    "runtime_hours": 7100
+  },
+  {
+    "equipment_id": "Chiller-1",
+    "building": "Building-C",
+    "type": "Centrifugal Chiller",
+    "status": "DEGRADED",
+    "risk": "HIGH",
+    "energy_impact": "VERY_HIGH",
+    "issue": "Refrigerant pressure drop & fouled condenser tubes",
+    "criticality": 5,
+    "runtime_hours": 8300
+  },
+  {
+    "equipment_id": "AHU-1",
+    "building": "Building-B",
+    "type": "Air Handling Unit",
+    "status": "OPERATIONAL",
+    "risk": "LOW",
+    "energy_impact": "NORMAL",
+    "issue": "None",
+    "criticality": 3,
+    "runtime_hours": 2900
+  },
+  {
+    "equipment_id": "AHU-2",
+    "building": "Building-B",
+    "type": "Air Handling Unit",
+    "status": "WARNING",
+    "risk": "MEDIUM",
+    "energy_impact": "MODERATE",
+    "issue": "Supply fan belt slipping",
+    "criticality": 3,
+    "runtime_hours": 4100
+  },
+  {
+    "equipment_id": "Exhaust-Fan-1",
+    "building": "Building-A",
+    "type": "Exhaust Ventilation Fan",
+    "status": "OPERATIONAL",
+    "risk": "LOW",
+    "energy_impact": "LOW",
+    "issue": "None",
+    "criticality": 2,
+    "runtime_hours": 1200
+  },
+  {
+    "equipment_id": "Transformer-1",
+    "building": "Building-C",
+    "type": "Main Power Transformer",
+    "status": "OPERATIONAL",
+    "risk": "LOW",
+    "energy_impact": "NORMAL",
+    "issue": "Scheduled thermal scan due",
+    "criticality": 5,
+    "runtime_hours": 12500
+  }
+]

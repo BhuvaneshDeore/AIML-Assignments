@@ -1,0 +1,93 @@
+[
+  {
+    "issue_id": "WO-101",
+    "equipment_id": "RTU-3",
+    "building": "Building-A",
+    "description": "Compressor short-cycling rapidly causing 35% excess peak electrical power draw.",
+    "severity": "HIGH",
+    "criticality": 5,
+    "status": "OPEN",
+    "estimated_cost": 1250.0,
+    "safety_risk": 7,
+    "reliability_risk": 9,
+    "energy_impact": 9
+  },
+  {
+    "issue_id": "WO-102",
+    "equipment_id": "Chiller-1",
+    "building": "Building-C",
+    "description": "Condenser tube fouling reducing coefficient of performance (COP) by 22%.",
+    "severity": "HIGH",
+    "criticality": 5,
+    "status": "OPEN",
+    "estimated_cost": 3400.0,
+    "safety_risk": 4,
+    "reliability_risk": 8,
+    "energy_impact": 10
+  },
+  {
+    "issue_id": "WO-103",
+    "equipment_id": "Cooling-Pump-2",
+    "building": "Building-C",
+    "description": "High bearing vibration exceeds 7.5 mm/s tolerance; potential mechanical failure.",
+    "severity": "CRITICAL",
+    "criticality": 4,
+    "status": "OPEN",
+    "estimated_cost": 1800.0,
+    "safety_risk": 8,
+    "reliability_risk": 9,
+    "energy_impact": 6
+  },
+  {
+    "issue_id": "WO-104",
+    "equipment_id": "RTU-2",
+    "building": "Building-A",
+    "description": "Air filter loading past threshold causing 18% fan static pressure drop.",
+    "severity": "MEDIUM",
+    "criticality": 3,
+    "status": "IN_PROGRESS",
+    "estimated_cost": 250.0,
+    "safety_risk": 2,
+    "reliability_risk": 5,
+    "energy_impact": 7
+  },
+  {
+    "issue_id": "WO-105",
+    "equipment_id": "Boiler-2",
+    "building": "Building-B",
+    "description": "Flame ignition delay requiring sensor cleaning and recalibration.",
+    "severity": "MEDIUM",
+    "criticality": 4,
+    "status": "OPEN",
+    "estimated_cost": 450.0,
+    "safety_risk": 6,
+    "reliability_risk": 6,
+    "energy_impact": 4
+  },
+  {
+    "issue_id": "WO-106",
+    "equipment_id": "AHU-2",
+    "building": "Building-B",
+    "description": "Loose supply fan drive belt slipping under high airflow load.",
+    "severity": "LOW",
+    "criticality": 3,
+    "status": "OPEN",
+    "estimated_cost": 120.0,
+    "safety_risk": 2,
+    "reliability_risk": 4,
+    "energy_impact": 5
+  },
+  {
+    "issue_id": "WO-107",
+    "equipment_id": "Transformer-1",
+    "building": "Building-C",
+    "description": "Routine annual thermographic infrared scan and oil sample testing.",
+    "severity": "LOW",
+    "criticality": 5,
+    "status": "OPEN",
+    "estimated_cost": 600.0,
+    "safety_risk": 3,
+    "reliability_risk": 3,
+    "energy_impact": 2
+  }
+]

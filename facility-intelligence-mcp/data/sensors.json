@@ -1,0 +1,112 @@
+[
+  {
+    "equipment_id": "RTU-1",
+    "building": "Building-A",
+    "temperature_c": 21.5,
+    "humidity_percent": 45.0,
+    "power_kw": 18.2,
+    "equipment_runtime_hours": 3200,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 1.2,
+    "sensor_status": "NORMAL"
+  },
+  {
+    "equipment_id": "RTU-2",
+    "building": "Building-A",
+    "temperature_c": 24.8,
+    "humidity_percent": 58.0,
+    "power_kw": 24.5,
+    "equipment_runtime_hours": 4800,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 2.8,
+    "sensor_status": "ELEVATED_TEMP"
+  },
+  {
+    "equipment_id": "RTU-3",
+    "building": "Building-A",
+    "temperature_c": 28.2,
+    "humidity_percent": 64.0,
+    "power_kw": 38.9,
+    "equipment_runtime_hours": 6200,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 4.1,
+    "sensor_status": "ANOMALOUS_POWER_DRAW"
+  },
+  {
+    "equipment_id": "Boiler-1",
+    "building": "Building-B",
+    "temperature_c": 72.0,
+    "humidity_percent": 30.0,
+    "power_kw": 42.0,
+    "equipment_runtime_hours": 2100,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 0.8,
+    "sensor_status": "NORMAL"
+  },
+  {
+    "equipment_id": "Boiler-2",
+    "building": "Building-B",
+    "temperature_c": 78.5,
+    "humidity_percent": 32.0,
+    "power_kw": 49.2,
+    "equipment_runtime_hours": 5400,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 1.5,
+    "sensor_status": "ELEVATED_TEMP"
+  },
+  {
+    "equipment_id": "Cooling-Pump-1",
+    "building": "Building-C",
+    "temperature_c": 18.0,
+    "humidity_percent": 50.0,
+    "power_kw": 11.5,
+    "equipment_runtime_hours": 1800,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 1.1,
+    "sensor_status": "NORMAL"
+  },
+  {
+    "equipment_id": "Cooling-Pump-2",
+    "building": "Building-C",
+    "temperature_c": 29.5,
+    "humidity_percent": 52.0,
+    "power_kw": 19.8,
+    "equipment_runtime_hours": 7100,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 8.4,
+    "sensor_status": "CRITICAL_VIBRATION"
+  },
+  {
+    "equipment_id": "Chiller-1",
+    "building": "Building-C",
+    "temperature_c": 12.4,
+    "humidity_percent": 48.0,
+    "power_kw": 115.0,
+    "equipment_runtime_hours": 8300,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 3.9,
+    "sensor_status": "ANOMALOUS_POWER_DRAW"
+  },
+  {
+    "equipment_id": "AHU-1",
+    "building": "Building-B",
+    "temperature_c": 20.2,
+    "humidity_percent": 44.0,
+    "power_kw": 14.1,
+    "equipment_runtime_hours": 2900,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 0.9,
+    "sensor_status": "NORMAL"
+  },
+  {
+    "equipment_id": "AHU-2",
+    "building": "Building-B",
+    "temperature_c": 22.0,
+    "humidity_percent": 49.0,
+    "power_kw": 16.8,
+    "equipment_runtime_hours": 4100,
+    "timestamp": "2026-10-06T12:00:00Z",
+    "vibration_mm_s": 2.1,
+    "sensor_status": "NORMAL"
+  }
+]

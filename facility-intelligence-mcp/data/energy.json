@@ -1,0 +1,26 @@
+[
+  {
+    "building": "Building-A",
+    "date_time": "2026-10-06T12:00:00Z",
+    "energy_kwh": 3850.5,
+    "baseline_kwh": 3100.0,
+    "peak_kwh": 4100.0,
+    "meter_status": "NORMAL"
+  },
+  {
+    "building": "Building-B",
+    "date_time": "2026-10-06T12:00:00Z",
+    "energy_kwh": 2400.0,
+    "baseline_kwh": 2550.0,
+    "peak_kwh": 2900.0,
+    "meter_status": "NORMAL"
+  },
+  {
+    "building": "Building-C",
+    "date_time": "2026-10-06T12:00:00Z",
+    "energy_kwh": 5120.0,
+    "baseline_kwh": 4200.0,
+    "peak_kwh": 5300.0,
+    "meter_status": "WARNING_HIGH_CONSUMPTION"
+  }
+]
